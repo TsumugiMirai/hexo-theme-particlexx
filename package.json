@@ -1,0 +1,37 @@
+{
+  "name": "hexo-theme-particlexx",
+  "version": "1.0.0",
+  "description": "A fast, accessible Hexo theme continuing the ParticleX visual style, with Artalk comments.",
+  "license": "MIT",
+  "author": "TsumugiMirai",
+  "repository": "github:TsumugiMirai/hexo-theme-particlexx",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "build": "tsc --noEmit && vite build && node tools/assets.mjs",
+    "test": "node --test test/*.test.cjs",
+    "check": "npm run build && npm test && npm audit --audit-level=high"
+  },
+  "dependencies": {
+    "cheerio": "1.2.0",
+    "hexo-renderer-ejs": "2.0.0",
+    "hexo-util": "3.3.0",
+    "highlight.js": "11.11.1"
+  },
+  "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "7.2.0",
+    "@fortawesome/free-solid-svg-icons": "7.2.0",
+    "@types/node": "24.10.1",
+    "artalk": "2.10.0",
+    "ejs": "3.1.10",
+    "hexo": "8.1.2",
+    "hexo-generator-index": "4.0.0",
+    "hexo-generator-archive": "2.0.0",
+    "hexo-generator-category": "2.0.0",
+    "hexo-generator-tag": "2.0.0",
+    "hexo-renderer-marked": "7.0.1",
+    "sharp": "0.35.4",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  },
+  "files": ["layout", "scripts", "lib", "languages", "source", "_config.yml", "LICENSE", "THIRD_PARTY.md", "README.md", "docs"]
+}

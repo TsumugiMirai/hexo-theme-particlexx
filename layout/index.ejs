@@ -1,0 +1,10 @@
+<section id="home-head" aria-label="<%= config.title %>">
+  <% const bg=px_background(); if(bg){ const image=typeof bg==='string'?{src:bg}:bg; %><picture id="home-background"><% if(image.mobile){ %><source media="(max-width: 900px)" srcset="<%= px_url(image.mobile) %>"><% } %><img src="<%= px_url(image.src) %>" width="<%= image.width || 1920 %>" height="<%= image.height || 1186 %>" alt="" fetchpriority="high" decoding="async"></picture><% } %>
+  <a id="home-info" href="#home-posts-wrap" aria-label="<%= px_t('blog') %>"><span class="loop"></span><span class="loop"></span><span class="loop"></span><span class="loop"></span><span class="info"><span class="wrap"><h1 class="hero-motto"><% (theme.hero_lines.length?theme.hero_lines:[config.title]).forEach(line=>{ %><span><%= line %></span><% }); %></h1></span></span></a>
+</section>
+<div id="home-posts-wrap" class="<%= theme.card.enable?'':'home-posts-wrap-no-card' %>"><div id="home-posts">
+<% const posts=px_posts(); if(posts.length){posts.forEach(post=>{ %>
+  <article class="post"><a href="<%= url_for(post.path) %>"><h2 class="post-title"><%= post.title %></h2></a><div class="category-and-date"><time datetime="<%= post.date.toISOString() %>"><%= date(post.date,'YYYY-MM-DD') %></time><% if(post.pinned){ %> · <%- px_icon('bookmark') %><% } %></div><div class="description"><p><%= px_summary(post) %></p></div><div class="post-tags"><% post.tags.forEach(tag=>{ %><a href="<%= url_for(tag.path) %>">#<%= tag.name %></a> <% }); %></div><a class="go-post" href="<%= url_for(post.path) %>"><%= px_t('read') %></a></article>
+<% }); } else { %><section class="post blog-empty" aria-label="<%= px_t('blog') %>"><h2 class="post-title">Blog</h2><p><%= px_t('empty') %></p></section><% } %>
+<% if(page.total>1){ %><nav class="page-current" aria-label="Pagination"><%- paginator({prev_text:'‹',next_text:'›'}) %></nav><% } %>
+</div><% if(theme.card.enable){ %><aside id="home-card"><%- partial('card') %></aside><% } %></div>

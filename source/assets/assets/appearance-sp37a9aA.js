@@ -1,0 +1,1 @@
+try{let e=localStorage.getItem(`particlexx-appearance`);document.documentElement.dataset.theme=e===`dark`||e===`light`?e:`auto`}catch{document.documentElement.dataset.theme=`auto`}

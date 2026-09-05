@@ -1,0 +1,4 @@
+<section id="archives"><h1><%= page.title || (is_tag()?page.tag:is_category()?page.category:px_t('archives')) %></h1>
+<% if(['tags','categories'].includes(page.type)){ const terms=page.type==='tags'?site.tags:site.categories; %><div class="term-list"><% terms.forEach(term=>{ %><a href="<%= url_for(term.path) %>"><%= term.name %> (<%= term.length %>)</a><% }); %></div><% } %>
+<% const list=page.posts || site.posts; [...list.toArray()].sort((a,b)=>Number(b.date)-Number(a.date)).forEach(post=>{ %><article class="timeline-content"><time datetime="<%= post.date.toISOString() %>"><%= date(post.date,'YYYY-MM-DD') %></time><a href="<%= url_for(post.path) %>"><h2><%= post.title %></h2></a></article><% }); %>
+<% if(page.total>1){ %><nav class="page-current" aria-label="Pagination"><%- paginator({prev_text:'‹',next_text:'›'}) %></nav><% } %></section>

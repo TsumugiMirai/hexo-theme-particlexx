@@ -1,0 +1,7 @@
+<header id="menu"><nav class="px-nav" aria-label="Navigation">
+  <a class="title" href="<%= url_for('/') %>"><%= config.title %></a>
+  <details class="nav-links"><summary aria-label="<%= px_t('menu') %>"><%- px_icon('bars') %></summary><div class="nav-items">
+  <% Object.entries(theme.menu||{}).forEach(([label,value])=>{ %><a href="<%= px_url(value.link) %>"><%- px_icon(value.name) %><span><%= label %></span></a><% }); %>
+  </div></details>
+  <div class="nav-actions"><% if(theme.search.enable){ %><button id="search-toggle" aria-label="<%= px_t('search') %>" title="<%= px_t('search') %>" hidden><%- px_icon('magnifying-glass') %></button><% } %><% if(theme.appearance.enable){ %><button id="appearance-toggle" aria-label="<%= px_t('appearance') %>" title="<%= px_t('appearance') %>" hidden><%- px_icon('moon') %></button><% } %></div>
+</nav></header>

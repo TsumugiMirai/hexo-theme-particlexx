@@ -1,0 +1,29 @@
+<% const home=is_home(); const title=home?config.title:((page.title || (is_archive()?px_t('archives'):is_tag()?page.tag:is_category()?page.category:config.title))+' | '+config.title); const description=px_summary(page)||config.description||config.subtitle||config.title; const canonical=full_url_for(page.path || ''); %>
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en' %>" data-theme="auto">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title><meta name="description" content="<%= description %>"><meta name="author" content="<%= config.author %>">
+  <meta name="generator" content="ParticleXX 1.0.0"><link rel="canonical" href="<%= canonical %>">
+  <meta property="og:title" content="<%= title %>"><meta property="og:description" content="<%= description %>"><meta property="og:url" content="<%= canonical %>"><meta property="og:type" content="<%= is_post()?'article':'website' %>"><meta property="og:site_name" content="<%= config.title %>">
+  <meta name="twitter:card" content="summary">
+  <% if(theme.avatar){ %><meta property="og:image" content="<%= full_url_for(px_safe_url(theme.avatar)) %>"><% } %>
+  <link rel="icon" href="<%= px_url(theme.favicon || theme.avatar) %>">
+  <% if(theme.rss.enable){ %><link rel="alternate" type="application/atom+xml" title="<%= config.title %>" href="<%= url_for('atom.xml') %>"><% } %>
+  <script type="module" src="<%= px_asset('src/appearance.ts') %>"></script>
+  <% px_styles().forEach(href=>{ %><link rel="stylesheet" href="<%= href %>"><% }); %>
+  <script type="module" src="<%= px_asset('src/main.ts') %>"></script>
+</head>
+<body class="<%= home?'is-home':'' %>" data-messages="<%= px_messages() %>" data-preview="<%= theme.preview.enable %>">
+  <a class="skip-link" href="#main"><%= px_t('skip') %></a>
+  <%- partial('menu') %>
+  <main id="main">
+    <% if(home){ %><%- partial('index') %>
+    <% } else if(page.type==='about'){ %><%- partial('about') %>
+    <% } else if(page.type==='friends'){ %><%- partial('friends') %>
+    <% } else if(is_archive() || is_tag() || is_category() || ['tags','categories'].includes(page.type)){ %><%- partial('archives') %>
+    <% } else { %><%- partial('post') %><% } %>
+  </main>
+  <%- partial('footer') %>
+  <% if(theme.search.enable){ %><dialog id="search-dialog" aria-labelledby="search-title" data-index="<%= url_for('search.json') %>" data-limit="<%= theme.search.max_results %>"><button class="dialog-close" data-close aria-label="<%= px_t('close') %>"><%- px_icon('xmark') %></button><h2 id="search-title"><%= px_t('search') %></h2><label for="search-input"><%= px_t('search_placeholder') %></label><input id="search-input" type="search" autocomplete="off"><p id="search-status" role="status"></p><ol id="search-results"></ol></dialog><% } %>
+</body></html>

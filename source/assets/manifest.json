@@ -1,0 +1,33 @@
+{
+  "src/appearance.ts": {
+    "file": "assets/appearance-sp37a9aA.js",
+    "name": "appearance",
+    "src": "src/appearance.ts",
+    "isEntry": true
+  },
+  "src/comments.ts": {
+    "file": "assets/comments-QYW9s0CU.js",
+    "name": "comments",
+    "src": "src/comments.ts",
+    "isDynamicEntry": true
+  },
+  "src/main.ts": {
+    "file": "assets/main-D14Ln2t8.js",
+    "name": "main",
+    "src": "src/main.ts",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/search.ts",
+      "src/comments.ts"
+    ],
+    "css": [
+      "assets/main-BuiE6xOs.css"
+    ]
+  },
+  "src/search.ts": {
+    "file": "assets/search-iWAib94y.js",
+    "name": "search",
+    "src": "src/search.ts",
+    "isDynamicEntry": true
+  }
+}

@@ -1,0 +1,34 @@
+# Site settings belong in the blog's _config.particlexx.yml.
+avatar: /images/avatar.svg
+favicon: /images/avatar.svg
+background: []
+hero_lines: []
+menu:
+  Home: { name: house, link: / }
+  About: { name: user, link: /about/ }
+card:
+  enable: true
+  description: ''
+  iconLinks: {}
+  friendLinks: {}
+friends: []
+footer:
+  since: 2026
+  ICP: { enable: false, code: '', link: '' }
+search: { enable: true, max_results: 30 }
+toc: { enable: true }
+preview: { enable: true }
+appearance: { enable: true }
+comments:
+  provider: none
+  artalk:
+    server: /comments/
+    site: ''
+  giscus:
+    repo: ''
+    repo_id: ''
+    category: ''
+    category_id: ''
+rss: { enable: true }
+sitemap: { enable: true }
+excerpt_length: 180
